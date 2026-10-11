@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smartphones IA Local 2026</title>
+<meta name="description" content="Comparativa de smartphones insignia con IA ejecutada en el dispositivo: NPU, resistencia, autonomía y disponibilidad en Chile. Octubre 2026.">
+<!-- Documento 100% estático: sin JavaScript, sin formularios, sin recursos externos. -->
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --surface-2:#eef1f5; --ink:#14181f; --ink-2:#4a5466;
+  --line:#d9dee6; --accent:#1f5fbf; --accent-soft:#e3ecfa;
+  --ok:#1d7a46; --ok-soft:#e1f3e8; --warn:#9a6200; --warn-soft:#fbf0dc; --bad:#a8322d; --bad-soft:#f9e3e1;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1217; --surface:#171b22; --surface-2:#1f2530; --ink:#e8ecf2; --ink-2:#a3adbd;
+    --line:#2c3440; --accent:#79a8f0; --accent-soft:#1c2a40;
+    --ok:#6cc893; --ok-soft:#163023; --warn:#e6b45a; --warn-soft:#352812; --bad:#ef8a83; --bad-soft:#3a1a18;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1217; --surface:#171b22; --surface-2:#1f2530; --ink:#e8ecf2; --ink-2:#a3adbd;
+  --line:#2c3440; --accent:#79a8f0; --accent-soft:#1c2a40;
+  --ok:#6cc893; --ok-soft:#163023; --warn:#e6b45a; --warn-soft:#352812; --bad:#ef8a83; --bad-soft:#3a1a18;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+header h1{font-size:1.55rem;margin:0 0 4px;letter-spacing:-.01em}
+header p{margin:0;color:var(--ink-2);font-size:.92rem}
+h2{font-size:1.2rem;margin:28px 0 10px}
+h3{font-size:1.02rem;margin:0}
+small,.muted{color:var(--ink-2)}
+ul{margin:6px 0;padding-left:18px}
+li{margin:2px 0}
+
+/* Pestañas sin JavaScript (radio + CSS) */
+.tabs>input{position:absolute;opacity:0;pointer-events:none}
+.tabbar{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 0;border-bottom:1px solid var(--line)}
+.tabbar label{padding:9px 14px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;
+  background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-weight:600;font-size:.9rem}
+.panel{display:none;padding-top:6px}
+#t1:checked~.tabbar label[for=t1],#t2:checked~.tabbar label[for=t2],
+#t3:checked~.tabbar label[for=t3],#t4:checked~.tabbar label[for=t4]{background:var(--surface);color:var(--accent);
+  border-color:var(--line);position:relative;top:1px}
+#t1:checked~#p1,#t2:checked~#p2,#t3:checked~#p3,#t4:checked~#p4{display:block}
+.tabs>input:focus-visible~.tabbar label{outline:none}
+#t1:focus-visible~.tabbar label[for=t1],#t2:focus-visible~.tabbar label[for=t2],
+#t3:focus-visible~.tabbar label[for=t3],#t4:focus-visible~.tabbar label[for=t4]{outline:2px solid var(--accent)}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.kpi b{display:block;font-size:1.25rem}
+.kpi span{color:var(--ink-2);font-size:.85rem}
+
+/* Tablas */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.88rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--surface-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-2);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+td.model{font-weight:700;white-space:nowrap}
+tbody td:last-child{white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+
+/* Chips */
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)}
+.warn{background:var(--warn-soft);color:var(--warn)}
+.bad{background:var(--bad-soft);color:var(--bad)}
+.info{background:var(--accent-soft);color:var(--accent)}
+
+/* Tarjetas de equipos */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.card .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.card .soc{color:var(--accent);font-weight:600;font-size:.9rem;margin:2px 0 8px}
+.card dl{display:grid;grid-template-columns:118px 1fr;gap:4px 10px;margin:8px 0 0;font-size:.87rem}
+.card dt{color:var(--ink-2)}
+.card dd{margin:0}
+details{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--accent)}
+
+.note{background:var(--warn-soft);color:var(--ink);border-left:4px solid var(--warn);padding:10px 14px;border-radius:6px;font-size:.88rem;margin-top:14px}
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);padding:12px 16px;margin-top:12px}
+footer{margin-top:36px;font-size:.8rem;color:var(--ink-2);border-top:1px solid var(--line);padding-top:14px}
+footer a{color:var(--accent);word-break:break-all}
+
+@media (max-width:520px){
+  .card dl{grid-template-columns:100px 1fr}
+  .tabbar label{padding:8px 10px;font-size:.84rem}
+}
+@media print{
+  .tabbar{display:none}
+  .panel{display:block!important;page-break-before:always}
+  #p1{page-break-before:auto}
+  body{background:#fff;color:#000}
+  .tbl{overflow:visible}
+  details{display:block}
+  details>*{display:block}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Smartphones con IA ejecutada en local (Edge AI)</h1>
+  <p>Corte: octubre 2026 · 7 insignias con NPU de alto rendimiento · Foco: rendimiento IA, robustez, autonomía y compra en Chile</p>
+</header>
+
+<div class="tabs">
+  <input type="radio" name="tab" id="t1" checked>
+  <input type="radio" name="tab" id="t2">
+  <input type="radio" name="tab" id="t3">
+  <input type="radio" name="tab" id="t4">
+  <div class="tabbar" role="tablist">
+    <label for="t1">Resumen</label>
+    <label for="t2">1 · Equipos e IA</label>
+    <label for="t3">2 · Matriz técnica</label>
+    <label for="t4">3 · Chile</label>
+  </div>
+
+  <!-- ===================== RESUMEN ===================== -->
+  <section class="panel" id="p1">
+    <div class="kpis">
+      <div class="kpi"><b>~100 TOPS</b><span>NPU MediaTek 990 (Dimensity 9500) · única cifra TOPS publicada del grupo</span></div>
+      <div class="kpi"><b>7.500 mAh</b><span>Mayor batería: OPPO Find X9 Pro (Si/C)</span></div>
+      <div class="kpi"><b>IP69 / IP69K</b><span>Honor, Xiaomi, OPPO, vivo · chorro a presión y alta temperatura</span></div>
+      <div class="kpi"><b>CLP 1,7 M</b><span>Entrada iPhone 18 Pro Max 256 GB (precio oficial Apple Chile)</span></div>
+    </div>
+
+    <h2>Matriz resumen</h2>
+    <div class="tbl">
+    <table>
+      <thead><tr>
+        <th>Equipo</th><th>Chip / NPU</th><th>IA local</th><th>Pantalla</th><th>IP</th><th>Batería · Carga</th><th>Chile</th><th>Precio ref.</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="model">iPhone 18 Pro Max</td><td>A20 Pro (2 nm) · Neural Engine dual 16 núcleos</td><td><span class="chip ok">Alta</span></td><td>Ceramic Shield 2 · 3.000 nits</td><td>IP68</td><td class="num">≈5.400 mAh · cable rápido / 25 W MagSafe</td><td><span class="chip ok">Oficial</span></td><td class="num">CLP 1,70–3,26 M</td></tr>
+        <tr><td class="model">Galaxy S26 Ultra</td><td>Snapdragon 8 Elite Gen 5 for Galaxy · Hexagon</td><td><span class="chip ok">Alta</span></td><td>Gorilla Armor 2 · 2.600 nits</td><td>IP68</td><td class="num">5.000 mAh · 60 W / 25 W</td><td><span class="chip ok">Oficial</span></td><td class="num">CLP 1,32–2,07 M</td></tr>
+        <tr><td class="model">Pixel 11 Pro XL</td><td>Tensor G6 · TPU +50 %</td><td><span class="chip ok">Alta (Gemini Nano)</span></td><td>Victus 2 · 3.600 nits</td><td>IP68</td><td class="num">5.115 mAh · 45 W / 25 W Qi2.2</td><td><span class="chip bad">Importación</span></td><td class="num">≈CLP 1,4–1,7 M</td></tr>
+        <tr><td class="model">Xiaomi 17 Ultra</td><td>Snapdragon 8 Elite Gen 5 · Hexagon</td><td><span class="chip ok">Alta</span></td><td>Vidrio propietario · 3.500 nits</td><td>IP68/IP69</td><td class="num">6.000–6.330 mAh · 90 W / 50 W</td><td><span class="chip warn">Oficial marca · verificar modelo</span></td><td class="num">≈CLP 1,2–1,5 M</td></tr>
+        <tr><td class="model">Honor Magic 8 Pro</td><td>Snapdragon 8 Elite Gen 5 · Hexagon</td><td><span class="chip ok">Alta</span></td><td>NanoCrystal Shield · 6.000 nits HDR</td><td>IP68/IP69/IP69K</td><td class="num">7.100 mAh · 100 W / 80 W</td><td><span class="chip ok">Oficial</span></td><td class="num">≈CLP 0,9–1,1 M</td></tr>
+        <tr><td class="model">OPPO Find X9 Pro</td><td>Dimensity 9500 · NPU 990 ≈100 TOPS</td><td><span class="chip ok">Alta</span></td><td>Victus 2 · 3.600 nits</td><td>IP66/68/69</td><td class="num">7.500 mAh · 80 W / 50 W</td><td><span class="chip warn">Marca oficial · modelo vía ML</span></td><td class="num">≈CLP 1,0–1,3 M</td></tr>
+        <tr><td class="model">vivo X300 Pro</td><td>Dimensity 9500 · NPU 990 ≈100 TOPS</td><td><span class="chip ok">Alta</span></td><td>Armor Glass · ≈4.500 nits</td><td>IP68/IP69</td><td class="num">6.510 mAh · 90 W / 40 W</td><td><span class="chip bad">Importación</span></td><td class="num">≈CLP 1,1–1,4 M</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Lectura rápida</h2>
+    <div class="verdict">
+      <ul>
+        <li><b>Mejor ecosistema IA local + soporte en Chile:</b> iPhone 18 Pro Max y Galaxy S26 Ultra. Garantía oficial, servicio técnico y planes con operador.</li>
+        <li><b>Mejor IA "nativa" de software:</b> Pixel 11 Pro XL (Gemini Nano on-device más maduro). Penalización: sin venta oficial ni servicio técnico local.</li>
+        <li><b>Mejor relación robustez/autonomía/precio:</b> Honor Magic 8 Pro. IP69K, 7.100 mAh, 100 W y venta oficial.</li>
+        <li><b>Mayor autonomía bruta:</b> OPPO Find X9 Pro (7.500 mAh). Uso de 3–4 días según reseñas.</li>
+        <li><b>Para faena / terreno (polvo, lavado a presión, sol directo):</b> filtra por <b>IP69</b> + <b>&gt;3.000 nits</b> + <b>&gt;6.000 mAh</b>: Honor Magic 8 Pro, OPPO Find X9 Pro, Xiaomi 17 Ultra.</li>
+        <li><b>TOPS no son comparables 1:1:</b> Apple, Qualcomm y Google no publican TOPS oficiales de esta generación; comunican mejoras relativas. El rendimiento real en LLM depende más del ancho de banda de RAM (12–16 GB LPDDR5X) y del runtime (Core ML, QNN, LiteRT/AICore, NeuroPilot).</li>
+      </ul>
+    </div>
+    <div class="note"><b>Nota de calidad de dato:</b> el símbolo ≈ indica cifra no oficial, estimada o con discrepancia entre fuentes (batería por región, precios de importación). Verificar precio vigente antes de comprar.</div>
+  </section>
+
+  <!-- ===================== 1. EQUIPOS ===================== -->
+  <section class="panel" id="p2">
+    <h2>1 · Mapeo de dispositivos premium con IA local</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="top"><h3>Apple iPhone 18 Pro Max</h3><span class="chip info">Sep 2026</span></div>
+        <div class="soc">Apple A20 Pro · 2 nm</div>
+        <dl>
+          <dt>NPU</dt><dd>Neural Engine <b>dual de 16 núcleos</b> + Neural Accelerators en cada núcleo de GPU (7 núcleos)</dd>
+          <dt>Rendimiento</dt><dd>Apple declara <b>2× procesamiento IA</b> vs A19 Pro. TOPS no publicado</dd>
+          <dt>IA local</dt><dd>Apple Intelligence on-device (modelo fundacional ~3B), Live Translation, visión en cámara</dd>
+          <dt>RAM</dt><dd>12 GB (estimado)</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Integración vertical HW/SW → menor latencia en inferencia.</li>
+          <li>Private Cloud Compute solo cuando el modelo local no alcanza.</li>
+          <li>Hasta 2 TB: útil para modelos locales y datos offline.</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Samsung Galaxy S26 Ultra</h3><span class="chip info">Feb 2026</span></div>
+        <div class="soc">Qualcomm Snapdragon 8 Elite Gen 5 for Galaxy · 3 nm</div>
+        <dl>
+          <dt>NPU</dt><dd>Hexagon NPU (nueva generación, overclock "for Galaxy")</dd>
+          <dt>Rendimiento</dt><dd>Qualcomm declara <b>+37 % NPU</b> vs 8 Elite. TOPS no publicado</dd>
+          <dt>IA local</dt><dd>Galaxy AI: traducción de llamadas, Now Brief, edición generativa, modo offline seleccionable</dd>
+          <dt>RAM</dt><dd>12 / 16 GB LPDDR5X</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Ajuste "procesar datos solo en el dispositivo" para entornos con restricción de datos.</li>
+          <li>S Pen + pantalla antirreflejo: lectura de planos en terreno.</li>
+          <li>7 años de actualizaciones de SO.</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Google Pixel 11 Pro XL</h3><span class="chip info">Ago 2026</span></div>
+        <div class="soc">Google Tensor G6 + Titan M3</div>
+        <dl>
+          <dt>NPU</dt><dd>TPU de Google (Edge TPU de nueva generación)</dd>
+          <dt>Rendimiento</dt><dd>Google declara <b>TPU +50 %</b> y +20 % eficiencia vs Tensor G5. TOPS no publicado</dd>
+          <dt>IA local</dt><dd>Gemini Nano multimodal on-device, Magic Cue, transcripción/resumen offline</dd>
+          <dt>RAM</dt><dd>12 GB (256 GB) / 16 GB (512 GB–1 TB)</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Referencia en LLM local para Android (AICore expuesto a apps).</li>
+          <li>Sin venta oficial en Chile: considerar riesgo de garantía y bandas.</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Xiaomi 17 Ultra</h3><span class="chip info">Dic 2025 / global Feb 2026</span></div>
+        <div class="soc">Qualcomm Snapdragon 8 Elite Gen 5 · 3 nm</div>
+        <dl>
+          <dt>NPU</dt><dd>Hexagon NPU</dd>
+          <dt>Rendimiento</dt><dd>+37 % NPU vs 8 Elite (dato Qualcomm). TOPS no publicado</dd>
+          <dt>IA local</dt><dd>HyperAI (HyperOS 3): traducción, escritura y visión on-device</dd>
+          <dt>RAM</dt><dd>Hasta 16 GB LPDDR5X · UFS 4.1 hasta 1 TB</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Foco fotográfico (Leica, 200 MP) con procesamiento IA local.</li>
+          <li>Batería global menor que la china (6.000–6.330 vs 6.800 mAh).</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Honor Magic 8 Pro</h3><span class="chip info">Oct–Dic 2025</span></div>
+        <div class="soc">Qualcomm Snapdragon 8 Elite Gen 5 · 3 nm</div>
+        <dl>
+          <dt>NPU</dt><dd>Hexagon NPU</dd>
+          <dt>Rendimiento</dt><dd>+37 % NPU vs 8 Elite (dato Qualcomm). TOPS no publicado</dd>
+          <dt>IA local</dt><dd>MagicOS 10 · agente YOYO, detección de deepfakes en local</dd>
+          <dt>RAM</dt><dd>12 / 16 GB</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>El más robusto del grupo (IP69K).</li>
+          <li>Versión Europa con 6.270 mAh; versión global 7.100 mAh.</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>OPPO Find X9 Pro</h3><span class="chip info">Oct 2025</span></div>
+        <div class="soc">MediaTek Dimensity 9500 · 3 nm</div>
+        <dl>
+          <dt>NPU</dt><dd>MediaTek <b>NPU 990</b></dd>
+          <dt>Rendimiento</dt><dd><b>≈100 TOPS</b> teóricos · 2× vs NPU 890 y −56 % consumo pico (MediaTek)</dd>
+          <dt>IA local</dt><dd>ColorOS 16 AI: resumen, traducción, borrado generativo</dd>
+          <dt>RAM</dt><dd>12 / 16 GB</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Mejor autonomía del grupo (7.500 mAh).</li>
+          <li>NPU con mayor cifra TOPS publicada.</li>
+        </ul></details>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>vivo X300 Pro</h3><span class="chip info">Oct 2025</span></div>
+        <div class="soc">MediaTek Dimensity 9500 + chip de imagen V3+</div>
+        <dl>
+          <dt>NPU</dt><dd>MediaTek NPU 990 + ISP/IA dedicado V3+</dd>
+          <dt>Rendimiento</dt><dd><b>≈100 TOPS</b> teóricos (NPU 990)</dd>
+          <dt>IA local</dt><dd>OriginOS 6 (Android 16) · IA fotográfica y de video en local</dd>
+          <dt>RAM</dt><dd>Hasta 16 GB · 512 GB</dd>
+        </dl>
+        <details><summary>Claves de uso</summary><ul>
+          <li>Dos procesadores IA (NPU + V3+): fuerte en visión artificial.</li>
+          <li>Sin presencia oficial confirmada en Chile.</li>
+        </ul></details>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== 2. MATRIZ ===================== -->
+  <section class="panel" id="p3">
+    <h2>2 · Matriz técnica de resistencia y autonomía</h2>
+    <div class="tbl">
+    <table>
+      <thead><tr>
+        <th>Equipo</th><th>Vidrio frontal</th><th>Brillo pico (nits)</th><th>IP</th><th>Batería (mAh)</th><th>Cable (W)</th><th>Inalámbrica (W)</th><th>Refrigeración</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="model">iPhone 18 Pro Max</td><td>Ceramic Shield 2 (frente) · Ceramic Shield (dorso)</td><td class="num">3.000 exterior · 1.600 HDR</td><td>IP68 (6 m / 30 min)</td><td class="num">≈5.400 <small>(fuentes: 5.391–5.567)</small></td><td class="num">Carga rápida mejorada <small>(≈40–60 reportado)</small></td><td class="num">25 (MagSafe / Qi2.2)</td><td>Cámara de vapor 3× superficie; Apple: +40 % rendimiento sostenido</td></tr>
+        <tr><td class="model">Galaxy S26 Ultra</td><td>Gorilla Armor 2 (antirreflejo) · dorso Victus 2</td><td class="num">2.600</td><td>IP68</td><td class="num">5.000</td><td class="num">60</td><td class="num">25</td><td>Cámara de vapor ampliada</td></tr>
+        <tr><td class="model">Pixel 11 Pro XL</td><td>Gorilla Glass Victus 2</td><td class="num">3.600 <small>(medido HDR ≈2.100)</small></td><td>IP68</td><td class="num">5.115</td><td class="num">45</td><td class="num">25 (Qi2.2 Pixelsnap)</td><td>Cámara de vapor</td></tr>
+        <tr><td class="model">Xiaomi 17 Ultra</td><td>Vidrio reforzado propietario Xiaomi</td><td class="num">3.500</td><td>IP68 / IP69</td><td class="num">6.000–6.330 global <small>(6.800 China)</small></td><td class="num">90</td><td class="num">50</td><td>Cámara de vapor</td></tr>
+        <tr><td class="model">Honor Magic 8 Pro</td><td>Honor NanoCrystal Shield</td><td class="num">6.000 HDR · 1.800 HBM <small>(medido 1.837)</small></td><td>IP68 / IP69 / IP69K</td><td class="num">7.100 global <small>(6.270 EU)</small></td><td class="num">100</td><td class="num">80</td><td>Cámara de vapor</td></tr>
+        <tr><td class="model">OPPO Find X9 Pro</td><td>Gorilla Glass Victus 2</td><td class="num">3.600 <small>(medido ≈1.800)</small></td><td>IP66 / IP68 / IP69</td><td class="num">7.500</td><td class="num">80</td><td class="num">50 (AIRVOOC)</td><td>Cámara de vapor</td></tr>
+        <tr><td class="model">vivo X300 Pro</td><td>vivo Armor Glass</td><td class="num">≈4.500</td><td>IP68 / IP69</td><td class="num">6.510</td><td class="num">90</td><td class="num">40</td><td>Cámara de vapor</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="verdict"><ul>
+      <li><b>IP68</b> = inmersión prolongada. <b>IP69</b> = chorro de agua a alta presión y temperatura (lavado industrial). <b>IP69K</b> = norma alemana más exigente (80 °C, 80–100 bar).</li>
+      <li><b>Brillo:</b> cifras de fabricante son picos en HDR / zona pequeña; el brillo sostenido medido en pantalla completa ronda 1.200–1.900 nits.</li>
+      <li><b>Batería:</b> los equipos chinos usan celdas silicio-carbono (Si/C): +20–40 % capacidad en el mismo volumen.</li>
+      <li><b>Carga sostenida de IA:</b> la cámara de vapor define cuánto tiempo la NPU mantiene su frecuencia antes de reducirla por temperatura.</li>
+    </ul></div>
+  </section>
+
+  <!-- ===================== 3. CHILE ===================== -->
+  <section class="panel" id="p4">
+    <h2>3 · Disponibilidad y logística en Chile</h2>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Equipo</th><th>Canal</th><th>Dónde</th><th>Precio estimado</th><th>Riesgo / observación</th></tr></thead>
+      <tbody>
+        <tr><td class="model">iPhone 18 Pro Max</td><td><span class="chip ok">Oficial</span></td><td>Apple Chile, distribuidores autorizados, Falabella, Ripley, Paris, Entel, Movistar, Claro, WOM</td><td class="num">256 GB CLP 1.699.990 · 512 GB 1.959.990 · 1 TB 2.479.990 · 2 TB 3.259.990<br><small>18 Pro: desde CLP 1.549.990</small></td><td>Precio oficial de lanzamiento (sep 2026). Bajo riesgo.</td></tr>
+        <tr><td class="model">Galaxy S26 Ultra</td><td><span class="chip ok">Oficial</span></td><td>Samsung Store CL, Lider, Ripley, Falabella, Paris, operadores</td><td class="num">CLP 1.319.990 (256 GB, oferta) – 2.069.990 (1 TB, lista)</td><td>A 8 meses del lanzamiento hay descuentos fuertes. Evitar publicaciones "importado" (≈CLP 1,75 M, garantía 1 mes).</td></tr>
+        <tr><td class="model">Pixel 11 Pro XL</td><td><span class="chip bad">Mercado gris</span></td><td>Mercado Libre, importadores, compra en EE.UU. (courier)</td><td class="num">US$ 1.199–1.299 + IVA 19 % + courier ≈ CLP 1,4–1,7 M</td><td>Sin garantía Google local ni servicio técnico. Verificar bandas 5G/4G de operadores chilenos y versión eSIM.</td></tr>
+        <tr><td class="model">Xiaomi 17 Ultra</td><td><span class="chip warn">Marca oficial · verificar</span></td><td>Xiaomi Store CL, Falabella, Paris, Mercado Libre</td><td class="num">≈CLP 1,2–1,5 M <small>(ref. EU €1.249–1.499; MX $35.999)</small></td><td>Xiaomi opera oficialmente; confirmar que la unidad sea versión global con garantía local.</td></tr>
+        <tr><td class="model">Honor Magic 8 Pro</td><td><span class="chip ok">Oficial</span></td><td>honor.com/cl, retail y Mercado Libre oficial</td><td class="num">≈CLP 0,9–1,1 M</td><td>Mejor costo por prestación del grupo. Confirmar precio vigente.</td></tr>
+        <tr><td class="model">OPPO Find X9 Pro</td><td><span class="chip warn">Marca oficial · modelo no confirmado</span></td><td>Mercado Libre (vendedores), importadores</td><td class="num">≈CLP 1,0–1,3 M</td><td>OPPO vende en Chile, pero el Find X9 Pro no tiene lanzamiento local confirmado. Revisar garantía del vendedor.</td></tr>
+        <tr><td class="model">vivo X300 Pro</td><td><span class="chip bad">Mercado gris</span></td><td>Importación directa / courier</td><td class="num">≈US$ 1.150–1.400 total ≈ CLP 1,1–1,4 M</td><td>Sin soporte oficial confirmado. Riesgo de ROM china; exigir versión global.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="verdict"><ul>
+      <li><b>Importación:</b> compras &gt; US$ 41 pagan IVA 19 % en aduana; sobre US$ 500 se agrega arancel (6 %) salvo origen con TLC (EE.UU. y China: 0 % arancel).</li>
+      <li><b>Homologación SUBTEL:</b> equipos no homologados pueden tener restricciones de red 4G/5G. Revisar el IMEI en el sitio de SUBTEL antes de pagar.</li>
+      <li><b>Compra corporativa:</b> Apple y Samsung ofrecen canal empresas y planes de flota con operadores (Entel, Movistar); facilita MDM y reposición.</li>
+    </ul></div>
+  </section>
+</div>
+
+<footer>
+  <p><b>Fuentes principales (consultadas oct-2026):</b> apple.com/iphone-18-pro/specs · cnnchile.com (precios iPhone 18 Chile) · gsmarena.com (Galaxy S26 Ultra, Honor Magic8 Pro) · lider.cl · digitaltrends.com y expertreviews.co.uk (Pixel 11 Pro XL) · gadgetpilipinas.net y whatmobile.com.pk (Xiaomi 17 Ultra) · vivo.com · box.co.uk (OPPO Find X9 Pro) · gizmochina.com y nanoreview.net (Dimensity 9500) · counterpointresearch.com (Snapdragon 8 Elite Gen 5) · notebookcheck.net.</p>
+  <p>Precios referenciales en pesos chilenos (CLP), sujetos a cambio y promociones. Cifras con ≈ son estimaciones o tienen discrepancia entre fuentes. Documento estático sin scripts ni conexiones externas. Para PDF: Archivo → Imprimir → Guardar como PDF (imprime todas las secciones).</p>
+</footer>
+</div>
+</body>
+</html>
